@@ -1340,7 +1340,7 @@ Genera,         evalúa y optimiza recursos visuales que potencian el aprendizaj
             
             st.markdown("<div style='height: 8px'></div>", unsafe_allow_html=True)
             
-            if st.button("🚀 Iniciar Sesión", key="v3_btn_doc", width=None):
+            if st.button("🚀 Iniciar Sesión", key="v3_btn_doc"):
                 if not name_d.strip():
                     st.error("⚠️ Ingresa tu nombre")
                 elif pin_d.strip() != CFG.get("DOCENTE_PIN", ""):
@@ -1373,7 +1373,7 @@ Genera,         evalúa y optimiza recursos visuales que potencian el aprendizaj
             
             st.markdown("<div style='height: 8px'></div>", unsafe_allow_html=True)
             
-            if st.button("🎯 Unirse a la Clase", key="v3_btn_est", width=None):
+            if st.button("🎯 Unirse a la Clase", key="v3_btn_est"):
                 if not name_e.strip():
                     st.error("⚠️ Ingresa tu nombre")
                 elif code_e.strip() != CFG.get("CLASS_CODE", ""):
@@ -2250,7 +2250,7 @@ elif seccion == "Generador IA":
             if "prompt_mejorado" not in st.session_state:
                 st.session_state.prompt_mejorado = ""
             
-            if st.button("✨ Mejorar Prompt con IA", width=None, key="btn_mejorar"):
+            if st.button("✨ Mejorar Prompt con IA", , key="btn_mejorar"):
                 if prompt_basico.strip():
                     with st.spinner("🤖 GPT-4o está mejorando tu prompt..."):
                         prompt_mejorado = mejorar_prompt_educativo(
@@ -2363,7 +2363,7 @@ elif seccion == "Generador IA":
 
         # ========== BOTÓN DE GENERAR IMAGEN ==========
         st.markdown("---")
-        if st.button("🚀 Generar Imagen", type="primary", width=None, key="btn_generar"):
+        if st.button("🚀 Generar Imagen", type="primary", , key="btn_generar"):
             
             if not prompt_final:
                 st.error("⚠️ Escribe o selecciona un prompt antes de generar.")
@@ -2451,7 +2451,7 @@ elif seccion == "Generador IA":
             col_act1, col_act2 = st.columns(2)
             
             with col_act1:
-                if st.button("📥 Guardar en Catálogo", type="primary", width=None, key="btn_guardar_catalogo"):
+                if st.button("📥 Guardar en Catálogo", type="primary", , key="btn_guardar_catalogo"):
                     with st.spinner("Guardando y calculando métricas..."):
                         import base64
                         import pandas as pd
@@ -2526,13 +2526,13 @@ elif seccion == "Generador IA":
                         rerun()
 
             with col_act2:
-                if st.button("🗑️ Descartar", width=None, key="btn_descartar"):
+                if st.button("🗑️ Descartar", , key="btn_descartar"):
                     st.session_state.imagen_generada = None
                     rerun()
             
             # ========== REGENERAR ==========
             st.markdown("---")
-            if st.button("🔄 Regenerar", width=None, key="btn_regenerar"):
+            if st.button("🔄 Regenerar", , key="btn_regenerar"):
                 with st.spinner("🎨 Regenerando con GPT-Image 1.5..."):
                     resultado = generar_imagen(
                         prompt=img_data["prompt_original"],
@@ -2774,7 +2774,7 @@ elif seccion == "Evaluación IA (imagen + prompt)":
         if not st.session_state.ia_analysis_done:
             st.info("👆 Haz clic en el botón para que la IA analice esta imagen")
             
-            if st.button("🔍 Iniciar Análisis con IA", type="primary", width=None):
+            if st.button("🔍 Iniciar Análisis con IA", type="primary"):
                 with st.spinner("🤖 Analizando imagen y prompt..."):
                     try:
                         from services.openai_eval import generar_analisis_inicial
@@ -2884,20 +2884,20 @@ elif seccion == "Evaluación IA (imagen + prompt)":
             col_s1, col_s2 = st.columns(2)
             
             with col_s1:
-                if st.button("¿Hay errores conceptuales?", key="sug1", width=None):
+                if st.button("¿Hay errores conceptuales?", key="sug1"):
                     st.session_state.ia_pregunta_sugerida = "¿Detectas algún error conceptual en la imagen que pueda confundir a los estudiantes?"
                     rerun()
                 
-                if st.button("¿Cómo mejorar el prompt?", key="sug2", width=None):
+                if st.button("¿Cómo mejorar el prompt?", key="sug2"):
                     st.session_state.ia_pregunta_sugerida = "¿Cómo mejorarías el prompt para generar una imagen más clara y didáctica?"
                     rerun()
             
             with col_s2:
-                if st.button("¿Es útil para enseñar?", key="sug3", width=None):
+                if st.button("¿Es útil para enseñar?", key="sug3"):
                     st.session_state.ia_pregunta_sugerida = "¿Esta imagen es útil para enseñar el concepto a estudiantes universitarios? ¿Por qué?"
                     rerun()
                 
-                if st.button("Dame una puntuación", key="sug4", width=None):
+                if st.button("Dame una puntuación", key="sug4"):
                     st.session_state.ia_pregunta_sugerida = "Dame una puntuación del 1-5 para coherencia, fidelidad y claridad, explicando cada una."
                     rerun()
             
@@ -2947,13 +2947,13 @@ elif seccion == "Evaluación IA (imagen + prompt)":
             col_btn1, col_btn2, col_btn3 = st.columns(3)
             
             with col_btn1:
-                if st.button("🗑️ Limpiar Chat", width=None):
+                if st.button("🗑️ Limpiar Chat"):
                     st.session_state.ia_chat_history = []
                     st.session_state.ia_analysis_done = False
                     rerun()
             
             with col_btn2:
-                if st.button("💾 Guardar Evaluación", width=None):
+                if st.button("💾 Guardar Evaluación"):
                     try:
                         # Crear conversación completa
                         conversacion_completa = ""
@@ -3025,7 +3025,7 @@ elif seccion == "Evaluación IA (imagen + prompt)":
                         st.error(f"❌ Error al guardar: {str(e)}")
             
             with col_btn3:
-                if st.button("📥 Exportar Chat", width=None):
+                if st.button("📥 Exportar Chat"):
                     try:
                         export_text = f"""# Evaluación IA - {selected_id}
 Fecha: {datetime.now().strftime('%Y-%m-%d %H:%M')}
@@ -3508,7 +3508,7 @@ elif seccion == "Galería":
                     # Contenedor de imagen
                     ruta = _safe_path(row.get("ruta", ""))
                     if ruta and Path(ruta).exists():
-                        st.image(ruta, width=None)
+                        st.image(ruta)
                     else:
                         st.error("❌ Archivo de imagen no encontrado")
                     
@@ -3778,7 +3778,7 @@ elif seccion == "Galería":
                     action_cols = st.columns([1, 1, 1, 2])
                     
                     with action_cols[0]:
-                        if st.button("✅ Aceptar", key="detail_aceptar", width=None):
+                        if st.button("✅ Aceptar", key="detail_aceptar"):
                             df_meta.loc[df_meta["image_id"] == img_id, "estado"] = "aceptar"
                             save_csv(df_meta, META_PATH)
                             st.success("Estado actualizado a 'aceptar'")
@@ -3786,7 +3786,7 @@ elif seccion == "Galería":
                             rerun()
                     
                     with action_cols[1]:
-                        if st.button("🔧 Ajustar", key="detail_ajustar", width=None):
+                        if st.button("🔧 Ajustar", key="detail_ajustar"):
                             df_meta.loc[df_meta["image_id"] == img_id, "estado"] = "ajustar"
                             save_csv(df_meta, META_PATH)
                             st.success("Estado actualizado a 'ajustar'")
@@ -3794,7 +3794,7 @@ elif seccion == "Galería":
                             rerun()
                     
                     with action_cols[2]:
-                        if st.button("❌ Descartar", key="detail_descartar", width=None):
+                        if st.button("❌ Descartar", key="detail_descartar"):
                             df_meta.loc[df_meta["image_id"] == img_id, "estado"] = "descartar"
                             save_csv(df_meta, META_PATH)
                             st.warning("Estado actualizado a 'descartar'")
@@ -3949,7 +3949,7 @@ elif seccion == "Galería":
                             
                             # Mostrar imagen
                             if ruta and Path(ruta).exists():
-                                st.image(ruta, width=None)
+                                st.image(ruta)
                             else:
                                 st.markdown("""
                                 <div style="height: 200px; background: #1e293b; border-radius: 8px;
@@ -3997,7 +3997,7 @@ elif seccion == "Galería":
                 pag_cols = st.columns([1, 2, 1])
                 
                 with pag_cols[0]:
-                    if st.button("◀ Anterior", disabled=(page <= 1), key="gal_prev", width=None):
+                    if st.button("◀ Anterior", disabled=(page <= 1), key="gal_prev"):
                         st.session_state.gal_page = page - 1
                         rerun()
                 
@@ -4009,7 +4009,7 @@ elif seccion == "Galería":
                     """, unsafe_allow_html=True)
                 
                 with pag_cols[2]:
-                    if st.button("Siguiente ▶", disabled=(page >= total_pages), key="gal_next", width=None):
+                    if st.button("Siguiente ▶", disabled=(page >= total_pages), key="gal_next"):
                         st.session_state.gal_page = page + 1
                         rerun()
 
@@ -4386,7 +4386,7 @@ elif seccion == "Evaluar (rúbrica 4x4)":
                     df_img[["rater","decision_uso","severidad","comentario_global"]]
                     .drop_duplicates()
                 )
-                st.dataframe(resumen_global, width=None)
+                st.dataframe(resumen_global)
 
             # Actualizar estado (solo docente)
             if is_docente:
@@ -4740,7 +4740,7 @@ elif seccion == "Resumen y reportes":
             
             st.dataframe(
                 merged_display,
-                width=None,
+                ,
                 hide_index=True
             )
         
@@ -4798,7 +4798,7 @@ elif seccion == "Resumen y reportes":
                         data=csv_content,
                         file_name=f"consolidado_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
                         mime="text/csv",
-                        width=None
+                        
                     )
                 
                 with col_excel:
@@ -4823,7 +4823,7 @@ elif seccion == "Resumen y reportes":
                         data=excel_buffer,
                         file_name=f"consolidado_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx",
                         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                        width=None
+                        
                     )
                 
                 st.caption(f"📊 {len(df_limpio)} registros totales")
@@ -4895,7 +4895,7 @@ elif seccion == "Resumen y reportes":
                         data=zip_buffer,
                         file_name=f"banco_curado_{datetime.now().strftime('%Y%m%d_%H%M%S')}.zip",
                         mime="application/zip",
-                        width=None
+                        
                     )
                     
                     st.caption(f"📦 {len(aceptadas)} imágenes incluidas")
