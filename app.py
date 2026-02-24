@@ -1072,7 +1072,7 @@ if not st.session_state.auth_ok:
     
     .login-title {
         font-family: 'Outfit', sans-serif;
-        font-size: 1.5rem;
+        font-size: 2.5rem;
         font-weight: 700;
         color: #f8fafc;
         margin: 0;
