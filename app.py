@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+# Versión 2.0 - Fix OpenAI proxies error
 import numpy as np
 from PIL import Image
 import io
