@@ -4139,22 +4139,46 @@ elif seccion == "Evaluar (rúbrica 4x4)":
                             """, unsafe_allow_html=True)
 
                             # --- PUNTUACIONES IA ---
-                            col_ia1, col_ia2, col_ia3 = st.columns(3)
-                            
-                            with col_ia1:
-                                coherencia = eval_row.get('coherencia', 0)
-                                if coherencia > 0:
-                                    st.metric("Coherencia", f"{coherencia}/5")
-                            
-                            with col_ia2:
-                                fidelidad = eval_row.get('fidelidad', 0)
-                                if fidelidad > 0:
-                                    st.metric("Fidelidad", f"{fidelidad}/5")
-                            
-                            with col_ia3:
-                                claridad = eval_row.get('claridad', 0)
-                                if claridad > 0:
-                                    st.metric("Claridad", f"{claridad}/5")
+                            coherencia = eval_row.get('coherencia', 0)
+                            fidelidad = eval_row.get('fidelidad', 0)
+                            claridad = eval_row.get('claridad', 0)
+
+                            # Mostrar métricas con HTML (evita columnas anidadas)
+                            if coherencia > 0 or fidelidad > 0 or claridad > 0:
+                                st.markdown(f"""
+                                <div style="display: flex; gap: 16px; margin: 20px 0;">
+                                    <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(124, 58, 237, 0.1) 100%);
+                                                border-radius: 12px; padding: 20px; flex: 1; text-align: center;
+                                                border: 1px solid rgba(139, 92, 246, 0.3);">
+                                        <div style="color: #94a3b8; font-size: 0.85rem; font-weight: 500; margin-bottom: 8px;">
+                                            📊 Coherencia
+                                        </div>
+                                        <div style="color: #a78bfa; font-size: 2rem; font-weight: bold;">
+                                            {coherencia}/5
+                                        </div>
+                                    </div>
+                                    <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(124, 58, 237, 0.1) 100%);
+                                                border-radius: 12px; padding: 20px; flex: 1; text-align: center;
+                                                border: 1px solid rgba(139, 92, 246, 0.3);">
+                                        <div style="color: #94a3b8; font-size: 0.85rem; font-weight: 500; margin-bottom: 8px;">
+                                            🎯 Fidelidad
+                                        </div>
+                                        <div style="color: #a78bfa; font-size: 2rem; font-weight: bold;">
+                                            {fidelidad}/5
+                                        </div>
+                                    </div>
+                                    <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(124, 58, 237, 0.1) 100%);
+                                                border-radius: 12px; padding: 20px; flex: 1; text-align: center;
+                                                border: 1px solid rgba(139, 92, 246, 0.3);">
+                                        <div style="color: #94a3b8; font-size: 0.85rem; font-weight: 500; margin-bottom: 8px;">
+                                            ✨ Claridad
+                                        </div>
+                                        <div style="color: #a78bfa; font-size: 2rem; font-weight: bold;">
+                                            {claridad}/5
+                                        </div>
+                                    </div>
+                                </div>
+                                """, unsafe_allow_html=True)
 
                             # --- RECOMENDACIONES ---
                             recomendaciones = eval_row.get('recomendaciones', '')
