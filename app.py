@@ -665,7 +665,7 @@ IMG_DIR.mkdir(exist_ok=True, parents=True)
 CONFIG_PATH = BASE / "config.json"
 
 DEFAULT_CONFIG = {
-    "DOCENTE_PIN": "1234",        
+    "DOCENTE_PIN": "12345",        
     "CLASS_CODE": "UTA-2026"   
 }
 
@@ -1387,6 +1387,42 @@ Genera,         evalúa y optimiza recursos visuales que potencian el aprendizaj
                     st.success("✅ ¡Bienvenido!")
                     time.sleep(0.5)
                     st.rerun()
+    
+    # ===== DESACTIVAR AUTOCOMPLETADO =====
+    st.markdown("""
+    <script>
+        setTimeout(function() {
+            const inputs = document.querySelectorAll('input[type="text"], input[type="password"]');
+            inputs.forEach(function(input) {
+                input.setAttribute('autocomplete', 'off');
+                input.setAttribute('autocorrect', 'off');
+                input.setAttribute('autocapitalize', 'off');
+                input.setAttribute('spellcheck', 'false');
+            });
+        }, 500);
+    </script>
+    
+    <style>
+        input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 30px rgba(0, 0, 0, 0.4) inset !important;
+            -webkit-text-fill-color: #f1f5f9 !important;
+        }
+        
+        input::-webkit-contacts-auto-fill-button,
+        input::-webkit-credentials-auto-fill-button {
+            display: none !important;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    # ===== FOOTER =====
+    st.markdown("""
+    <div class="footer">
+        <p><strong>Universidad Técnica de Ambato</strong> · 2026</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.stop()       
     
     # ===== FOOTER =====
     st.markdown("""
