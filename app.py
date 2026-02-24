@@ -1339,7 +1339,7 @@ Genera,         evalúa y optimiza recursos visuales que potencian el aprendizaj
             
             st.markdown("<div style='height: 8px'></div>", unsafe_allow_html=True)
             
-            if st.button("🚀 Iniciar Sesión", key="v3_btn_doc", width="stretch"):
+            if st.button("🚀 Iniciar Sesión", key="v3_btn_doc", use_container_width=True):
                 if not name_d.strip():
                     st.error("⚠️ Ingresa tu nombre")
                 elif pin_d.strip() != CFG.get("DOCENTE_PIN", ""):
@@ -1372,7 +1372,7 @@ Genera,         evalúa y optimiza recursos visuales que potencian el aprendizaj
             
             st.markdown("<div style='height: 8px'></div>", unsafe_allow_html=True)
             
-            if st.button("🎯 Unirse a la Clase", key="v3_btn_est", width="stretch"):
+            if st.button("🎯 Unirse a la Clase", key="v3_btn_est", use_container_width=True):
                 if not name_e.strip():
                     st.error("⚠️ Ingresa tu nombre")
                 elif code_e.strip() != CFG.get("CLASS_CODE", ""):
@@ -2249,7 +2249,7 @@ elif seccion == "Generador IA":
             if "prompt_mejorado" not in st.session_state:
                 st.session_state.prompt_mejorado = ""
             
-            if st.button("✨ Mejorar Prompt con IA", width="stretch", key="btn_mejorar"):
+            if st.button("✨ Mejorar Prompt con IA", use_container_width=True, key="btn_mejorar"):
                 if prompt_basico.strip():
                     with st.spinner("🤖 GPT-4o está mejorando tu prompt..."):
                         prompt_mejorado = mejorar_prompt_educativo(
@@ -2362,7 +2362,7 @@ elif seccion == "Generador IA":
 
         # ========== BOTÓN DE GENERAR IMAGEN ==========
         st.markdown("---")
-        if st.button("🚀 Generar Imagen", type="primary", width="stretch", key="btn_generar"):
+        if st.button("🚀 Generar Imagen", type="primary", use_container_width=True, key="btn_generar"):
             
             if not prompt_final:
                 st.error("⚠️ Escribe o selecciona un prompt antes de generar.")
@@ -2450,7 +2450,7 @@ elif seccion == "Generador IA":
             col_act1, col_act2 = st.columns(2)
             
             with col_act1:
-                if st.button("📥 Guardar en Catálogo", type="primary", width="stretch", key="btn_guardar_catalogo"):
+                if st.button("📥 Guardar en Catálogo", type="primary", use_container_width=True, key="btn_guardar_catalogo"):
                     with st.spinner("Guardando y calculando métricas..."):
                         import base64
                         import pandas as pd
@@ -2525,13 +2525,13 @@ elif seccion == "Generador IA":
                         rerun()
 
             with col_act2:
-                if st.button("🗑️ Descartar", width="stretch", key="btn_descartar"):
+                if st.button("🗑️ Descartar", use_container_width=True, key="btn_descartar"):
                     st.session_state.imagen_generada = None
                     rerun()
             
             # ========== REGENERAR ==========
             st.markdown("---")
-            if st.button("🔄 Regenerar", width="stretch", key="btn_regenerar"):
+            if st.button("🔄 Regenerar", use_container_width=True, key="btn_regenerar"):
                 with st.spinner("🎨 Regenerando con GPT-Image 1.5..."):
                     resultado = generar_imagen(
                         prompt=img_data["prompt_original"],
@@ -2773,7 +2773,7 @@ elif seccion == "Evaluación IA (imagen + prompt)":
         if not st.session_state.ia_analysis_done:
             st.info("👆 Haz clic en el botón para que la IA analice esta imagen")
             
-            if st.button("🔍 Iniciar Análisis con IA", type="primary", width="stretch"):
+            if st.button("🔍 Iniciar Análisis con IA", type="primary", use_container_width=True):
                 with st.spinner("🤖 Analizando imagen y prompt..."):
                     try:
                         from services.openai_eval import generar_analisis_inicial
@@ -2883,20 +2883,20 @@ elif seccion == "Evaluación IA (imagen + prompt)":
             col_s1, col_s2 = st.columns(2)
             
             with col_s1:
-                if st.button("¿Hay errores conceptuales?", key="sug1", width="stretch"):
+                if st.button("¿Hay errores conceptuales?", key="sug1", use_container_width=True):
                     st.session_state.ia_pregunta_sugerida = "¿Detectas algún error conceptual en la imagen que pueda confundir a los estudiantes?"
                     rerun()
                 
-                if st.button("¿Cómo mejorar el prompt?", key="sug2", width="stretch"):
+                if st.button("¿Cómo mejorar el prompt?", key="sug2", use_container_width=True):
                     st.session_state.ia_pregunta_sugerida = "¿Cómo mejorarías el prompt para generar una imagen más clara y didáctica?"
                     rerun()
             
             with col_s2:
-                if st.button("¿Es útil para enseñar?", key="sug3", width="stretch"):
+                if st.button("¿Es útil para enseñar?", key="sug3", use_container_width=True):
                     st.session_state.ia_pregunta_sugerida = "¿Esta imagen es útil para enseñar el concepto a estudiantes universitarios? ¿Por qué?"
                     rerun()
                 
-                if st.button("Dame una puntuación", key="sug4", width="stretch"):
+                if st.button("Dame una puntuación", key="sug4", use_container_width=True):
                     st.session_state.ia_pregunta_sugerida = "Dame una puntuación del 1-5 para coherencia, fidelidad y claridad, explicando cada una."
                     rerun()
             
@@ -2946,13 +2946,13 @@ elif seccion == "Evaluación IA (imagen + prompt)":
             col_btn1, col_btn2, col_btn3 = st.columns(3)
             
             with col_btn1:
-                if st.button("🗑️ Limpiar Chat", width="stretch"):
+                if st.button("🗑️ Limpiar Chat", use_container_width=True):
                     st.session_state.ia_chat_history = []
                     st.session_state.ia_analysis_done = False
                     rerun()
             
             with col_btn2:
-                if st.button("💾 Guardar Evaluación", width="stretch"):
+                if st.button("💾 Guardar Evaluación", use_container_width=True):
                     try:
                         # Crear conversación completa
                         conversacion_completa = ""
@@ -3024,7 +3024,7 @@ elif seccion == "Evaluación IA (imagen + prompt)":
                         st.error(f"❌ Error al guardar: {str(e)}")
             
             with col_btn3:
-                if st.button("📥 Exportar Chat", width="stretch"):
+                if st.button("📥 Exportar Chat", use_container_width=True):
                     try:
                         export_text = f"""# Evaluación IA - {selected_id}
 Fecha: {datetime.now().strftime('%Y-%m-%d %H:%M')}
@@ -3507,7 +3507,7 @@ elif seccion == "Galería":
                     # Contenedor de imagen
                     ruta = _safe_path(row.get("ruta", ""))
                     if ruta and Path(ruta).exists():
-                        st.image(ruta, width="stretch")
+                        st.image(ruta, use_container_width=True)
                     else:
                         st.error("❌ Archivo de imagen no encontrado")
                     
@@ -3771,7 +3771,7 @@ elif seccion == "Galería":
                     action_cols = st.columns([1, 1, 1, 2])
                     
                     with action_cols[0]:
-                        if st.button("✅ Aceptar", key="detail_aceptar", width="stretch"):
+                        if st.button("✅ Aceptar", key="detail_aceptar", use_container_width=True):
                             df_meta.loc[df_meta["image_id"] == img_id, "estado"] = "aceptar"
                             save_csv(df_meta, META_PATH)
                             st.success("Estado actualizado a 'aceptar'")
@@ -3779,7 +3779,7 @@ elif seccion == "Galería":
                             rerun()
                     
                     with action_cols[1]:
-                        if st.button("🔧 Ajustar", key="detail_ajustar", width="stretch"):
+                        if st.button("🔧 Ajustar", key="detail_ajustar", use_container_width=True):
                             df_meta.loc[df_meta["image_id"] == img_id, "estado"] = "ajustar"
                             save_csv(df_meta, META_PATH)
                             st.success("Estado actualizado a 'ajustar'")
@@ -3787,7 +3787,7 @@ elif seccion == "Galería":
                             rerun()
                     
                     with action_cols[2]:
-                        if st.button("❌ Descartar", key="detail_descartar", width="stretch"):
+                        if st.button("❌ Descartar", key="detail_descartar", use_container_width=True):
                             df_meta.loc[df_meta["image_id"] == img_id, "estado"] = "descartar"
                             save_csv(df_meta, META_PATH)
                             st.warning("Estado actualizado a 'descartar'")
@@ -3942,7 +3942,7 @@ elif seccion == "Galería":
                             
                             # Mostrar imagen
                             if ruta and Path(ruta).exists():
-                                st.image(ruta, width="stretch")
+                                st.image(ruta, use_container_width=True)
                             else:
                                 st.markdown("""
                                 <div style="height: 200px; background: #1e293b; border-radius: 8px;
@@ -3980,7 +3980,7 @@ elif seccion == "Galería":
                             """, unsafe_allow_html=True)
                             
                             # Botón para ver detalle
-                            if st.button(f"👁️ Ver detalle", key=f"view_{row.get('image_id')}", width="stretch"):
+                            if st.button(f"👁️ Ver detalle", key=f"view_{row.get('image_id')}", use_container_width=True):
                                 st.session_state.gallery_view_image = row.get('image_id')
                                 rerun()
                 
@@ -3990,7 +3990,7 @@ elif seccion == "Galería":
                 pag_cols = st.columns([1, 2, 1])
                 
                 with pag_cols[0]:
-                    if st.button("◀ Anterior", disabled=(page <= 1), key="gal_prev", width="stretch"):
+                    if st.button("◀ Anterior", disabled=(page <= 1), key="gal_prev", use_container_width=True):
                         st.session_state.gal_page = page - 1
                         rerun()
                 
@@ -4002,7 +4002,7 @@ elif seccion == "Galería":
                     """, unsafe_allow_html=True)
                 
                 with pag_cols[2]:
-                    if st.button("Siguiente ▶", disabled=(page >= total_pages), key="gal_next", width="stretch"):
+                    if st.button("Siguiente ▶", disabled=(page >= total_pages), key="gal_next", use_container_width=True):
                         st.session_state.gal_page = page + 1
                         rerun()
 
@@ -4379,7 +4379,7 @@ elif seccion == "Evaluar (rúbrica 4x4)":
                     df_img[["rater","decision_uso","severidad","comentario_global"]]
                     .drop_duplicates()
                 )
-                st.dataframe(resumen_global, width="stretch")
+                st.dataframe(resumen_global, use_container_width=True)
 
             # Actualizar estado (solo docente)
             if is_docente:
@@ -4733,7 +4733,7 @@ elif seccion == "Resumen y reportes":
             
             st.dataframe(
                 merged_display,
-                width="stretch",
+                use_container_width=True,
                 hide_index=True
             )
         
