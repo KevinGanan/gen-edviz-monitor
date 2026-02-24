@@ -2250,7 +2250,7 @@ elif seccion == "Generador IA":
             if "prompt_mejorado" not in st.session_state:
                 st.session_state.prompt_mejorado = ""
             
-            if st.button("✨ Mejorar Prompt con IA", , key="btn_mejorar"):
+            if st.button("✨ Mejorar Prompt con IA", key="btn_mejorar"):
                 if prompt_basico.strip():
                     with st.spinner("🤖 GPT-4o está mejorando tu prompt..."):
                         prompt_mejorado = mejorar_prompt_educativo(
@@ -2363,7 +2363,7 @@ elif seccion == "Generador IA":
 
         # ========== BOTÓN DE GENERAR IMAGEN ==========
         st.markdown("---")
-        if st.button("🚀 Generar Imagen", type="primary", , key="btn_generar"):
+        if st.button("🚀 Generar Imagen", type="primary", key="btn_generar"):
             
             if not prompt_final:
                 st.error("⚠️ Escribe o selecciona un prompt antes de generar.")
@@ -2451,7 +2451,7 @@ elif seccion == "Generador IA":
             col_act1, col_act2 = st.columns(2)
             
             with col_act1:
-                if st.button("📥 Guardar en Catálogo", type="primary", , key="btn_guardar_catalogo"):
+                if st.button("📥 Guardar en Catálogo", type="primary", key="btn_guardar_catalogo"):
                     with st.spinner("Guardando y calculando métricas..."):
                         import base64
                         import pandas as pd
@@ -2526,13 +2526,13 @@ elif seccion == "Generador IA":
                         rerun()
 
             with col_act2:
-                if st.button("🗑️ Descartar", , key="btn_descartar"):
+                if st.button("🗑️ Descartar", key="btn_descartar"):
                     st.session_state.imagen_generada = None
                     rerun()
             
             # ========== REGENERAR ==========
             st.markdown("---")
-            if st.button("🔄 Regenerar", , key="btn_regenerar"):
+            if st.button("🔄 Regenerar", key="btn_regenerar"):
                 with st.spinner("🎨 Regenerando con GPT-Image 1.5..."):
                     resultado = generar_imagen(
                         prompt=img_data["prompt_original"],
@@ -4739,9 +4739,9 @@ elif seccion == "Resumen y reportes":
             merged_display = merged[cols_mostrar]
             
             st.dataframe(
-                merged_display,
-                ,
-                hide_index=True
+            merged_display,
+            use_container_width=True,  # ✅ ESTE SÍ EXISTE
+            hide_index=True
             )
         
         # ========== EXPORTACIONES (SOLO DOCENTE) ==========
