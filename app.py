@@ -3987,7 +3987,7 @@ elif seccion == "Galería":
                             """, unsafe_allow_html=True)
                             
                             # Botón para ver detalle
-                            if st.button(f"👁️ Ver detalle", key=f"view_{row.get('image_id')}", width=None):
+                            if st.button(f"👁️ Ver detalle", key=f"view_{row.get('image_id')}", use_container_width=True):
                                 st.session_state.gallery_view_image = row.get('image_id')
                                 rerun()
                 
