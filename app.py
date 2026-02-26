@@ -2650,6 +2650,9 @@ elif seccion == "Evaluación IA (imagen + prompt)":
     st.success("✅ OpenAI conectado correctamente")
     
     # Cargar catálogo
+    if not Path("data/catalogo.csv").exists():
+        st.warning("No hay imágenes en el catálogo. Genera algunas imágenes primero.")
+        st.stop()
     catalogo = pd.read_csv(Path("data/catalogo.csv"), encoding="utf-8")
     
     if len(catalogo) == 0:
